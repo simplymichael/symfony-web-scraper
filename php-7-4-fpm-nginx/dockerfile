@@ -16,3 +16,11 @@ RUN apt-get install sudo
 
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
 RUN apt install symfony-cli
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+## Symfony will need to `git init` during setup.
+## If we don't set the git user's name and email, 
+## Symfony will exit with an error.
+RUN git config --global user.name "simplymichael" && \ 
+    git config --global user.email "simplymichaelorji@gmail.com"
