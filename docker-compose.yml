@@ -22,13 +22,14 @@ services:
       retries: 10
 
     # Define Symfony-required environment variables. 
-    # That is, move variables (that should be) defined inside the `/app/.env` file here 
+    # That is, move/override variables (that should be) defined inside the `/app/.env` file here 
     # That way, we can define these variables inside our own `./.env` file, 
     # which now acts as the single source of truth for environment variables,
     # allowing the user to edit the variables as they like, 
     # without having to search for and edit the `/app/.env` file. 
     # This allows us to automate the complete install and run process  
     environment: 
+      APP_ENV: "${APP_ENV}"
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}?serverVersion=5.7&charset=utf8mb4"
   nginx:
     container_name: "${APP_NAME}_nginx"
