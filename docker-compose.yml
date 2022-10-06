@@ -33,6 +33,7 @@ services:
       # This allows us to automate the complete install and run process
       APP_ENV: "${APP_ENV}"
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}?serverVersion=5.7&charset=utf8mb4"
+      MESSENGER_TRANSPORT_DSN: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672/%2f/messages"
   nginx:
     container_name: "${APP_NAME}_nginx"
     image: nginx:1.17.9
