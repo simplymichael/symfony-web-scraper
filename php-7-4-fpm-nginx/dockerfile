@@ -28,6 +28,8 @@ RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
 RUN curl -sS https://getcomposer.org/installer | php 
 RUN sudo mv composer.phar /usr/bin/composer
 
+RUN apt-get update && apt-get install -y supervisor
+
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 ## Symfony will need to `git init` during setup.
