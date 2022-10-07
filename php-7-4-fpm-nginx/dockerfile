@@ -10,20 +10,12 @@ RUN apt update \
 
 WORKDIR /var/www/symfony_docker
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 RUN apt-get install sudo
 
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | sudo -E bash
 RUN apt install symfony-cli
-
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-
-## Symfony will need to `git init` during setup.
-## If we don't set the git user's name and email, 
-## Symfony will exit with an error.
-RUN git config --global user.name "simplymichael" && \ 
-    git config --global user.email "simplymichaelorji@gmail.com"
 
 # Install amqp php extension 
 # Cf. https://stackoverflow.com/a/65345103/1743192
@@ -32,3 +24,14 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 
 RUN chmod +x /usr/local/bin/install-php-extensions && sync && \
     install-php-extensions amqp
+
+RUN curl -sS https://getcomposer.org/installer | php 
+RUN sudo mv composer.phar /usr/bin/composer
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+## Symfony will need to `git init` during setup.
+## If we don't set the git user's name and email, 
+## Symfony will exit with an error.
+RUN git config --global user.name "simplymichael" && \ 
+    git config --global user.email "simplymichaelorji@gmail.com"
