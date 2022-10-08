@@ -1,7 +1,8 @@
 ## Prerequisites 
 - Docker 
 - Docker compose 
-- Copy `.env.example` to `.env` and edit it.
+- Copy `.env.example` to `.env` and edit the `.env` file.
+- Edit the *app/resources/sources.json* file and add any news sources you wish to scrape data from.
 
 ## Running 
 - **First run:** Run `docker-compose up -d --build`.
@@ -29,6 +30,14 @@ There are two ways to add resources:
   Now I prefer to think of it as just a convenience 
   that allows us to add a resource and process and parse it 
   without waiting for the cron schedule timer to come around.
+
+### Exceptions 
+The app currently cannot read news from Single Page Applications (SPAs). 
+I am currently having issues installing and setting up the chrome driver and browser 
+needed by the `symphony/panther` client which is able to work with SPAs. 
+I currently settled for the Goutte client instead, which works with non-SPA pages.
+I am still working on getting the Panther client working, however, and I can submit an updated version 
+when it is done, if I am asked to.
 
 ### App Users 
 The app implements three authentication account details configurable via the *.env* file. 
