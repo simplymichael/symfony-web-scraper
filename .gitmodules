@@ -1,0 +1,3 @@
+[submodule "symfony-website-scraper"]
+	path = symfony-website-scraper
+	url = https://github.com/simplymichael/symfony-website-scraper.git
