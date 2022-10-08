@@ -1,9 +1,5 @@
 #!/bin/bash
 
-chmod 777 /usr/shell-scripts
-
-#sudo su
-
 ## Wait for the (Symfony) app to be ready 
 until $(curl --output /dev/null --silent --head --fail http://nginx:80/login); do
     printf '.'
@@ -25,6 +21,6 @@ echo "${CRON_SCHEDULE} /bin/bash /usr/shell-scripts/run-news-parser.sh >> /var/l
 
 crontab /etc/cron.d/parser_cron
 
-## Run cron and supervisord
+## Run cron and supervisord (used to automatically start our news parser queue consumer)
 cron &
-supervisord &
+supervisord -c /etc/supervisor/conf.d/supervisord.conf &
