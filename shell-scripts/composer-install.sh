@@ -1,13 +1,15 @@
 #!/bin/bash
 
 ## Install dependencies
-echo "Running `composer install`"
+echo "Running 'composer install'"
 composer install
 
 
 ## Install and verify browser client drivers used by symfony/panther
-echo "Running `bdi detect drivers`"
-vendor/bin/bdi detect drivers
+#echo "Running 'bdi driver:chromedriver' to install Chrome driver"
+#vendor/bin/bdi detect drivers
+#vendor/bin/bdi driver:chromedriver
+#cp ./chromedriver /usr/local/bin/chromedriver
 
 
 ## Setup the database 
