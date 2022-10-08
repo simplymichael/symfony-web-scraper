@@ -9,6 +9,8 @@ services:
     volumes:
       - ./app:/var/www/symfony_docker
       - ./supervisor:/etc/supervisor/conf.d
+      - ./shell-scripts:/usr/shell-scripts
+      - ./cron-logs/cron.log:/var/log/cron.log
     networks:
       - php
       - mysql
@@ -30,6 +32,7 @@ services:
       USER_USERNAME: "${USER_USERNAME}"
       USER_PASSWORD: "${USER_PASSWORD}"
       POSTS_PER_PAGE: "${POSTS_PER_PAGE}"
+      CRON_SCHEDULE: "${CRON_SCHEDULE}"
 
       # Define Symfony-required environment variables. 
       # That is, move/override variables (that should be) defined inside the `/app/.env` file here 
@@ -41,7 +44,7 @@ services:
       APP_ENV: "${APP_ENV}"
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}?serverVersion=5.7&charset=utf8mb4"
       MESSENGER_TRANSPORT_DSN: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672/%2f/messages"
-    entrypoint: [bash, -c, "php-fpm", "/usr/bin/supervisord"]
+    entrypoint: [ bash, -c, "/usr/shell-scripts/init.sh" ]
   nginx:
     container_name: "${APP_NAME}_nginx"
     image: nginx:1.17.9

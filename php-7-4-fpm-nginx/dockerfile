@@ -30,6 +30,10 @@ RUN sudo mv composer.phar /usr/bin/composer
 
 RUN apt-get update && apt-get install -y supervisor
 
+RUN apt-get update && apt-get install -y cron
+
+RUN apt-get update && apt-get install -y procps && rm -rf /var/lib/apt/lists/*
+
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 ## Symfony will need to `git init` during setup.
