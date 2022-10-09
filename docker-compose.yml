@@ -7,7 +7,7 @@ services:
     ports:
       - "9000:9000"
     volumes:
-      - ./symfony-website-scraper:/var/www/symfony_docker
+      - ./app:/var/www/symfony_docker
       - ./supervisor:/etc/supervisor/conf.d
       - ./shell-scripts:/usr/shell-scripts
       - ./cron-logs/cron.log:/var/log/cron.log
@@ -42,6 +42,7 @@ services:
       # without having to search for and edit the `/app/.env` file. 
       # This allows us to automate the complete install and run process
       APP_ENV: "${APP_ENV}"
+      APP_SECRET: "${APP_SECRET}"
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}?serverVersion=5.7&charset=utf8mb4"
       MESSENGER_TRANSPORT_DSN: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672/%2f/messages"
     entrypoint: [ bash, -c, "/usr/shell-scripts/init.sh" ]

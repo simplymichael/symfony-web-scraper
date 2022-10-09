@@ -1,8 +1,16 @@
 #!/bin/bash
 
-## Install dependencies
-echo "Running 'composer install'"
-composer install
+
+APP_DIR=/var/www/symfony_docker
+VENDOR_DIR="${APP_DIR}/vendor"
+
+
+## Install dependencies 
+## But only if this is the first run
+if [ ! -f ${VENDOR_DIR} ]; then
+	echo "Running 'composer install'"
+    composer install
+fi
 
 
 ## Install and verify browser client drivers used by symfony/panther
