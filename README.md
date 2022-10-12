@@ -1,8 +1,9 @@
 ## Prerequisites 
-- Docker 
-- Docker compose 
+- [Docker][docker] 
+- [Docker compose][compose] 
 - Copy `.env.example` to `.env` and edit the `.env` file.
 - Edit the *app/resources/sources.json* file and add any news sources you wish to scrape data from.
+- Ensure that every file in the *./shell-scripts/* sub-directory ends with Unix-style (`LF`) line-endings.
 
 ## Running 
 - **First run:** Run `docker-compose up -d --build`.
@@ -64,3 +65,15 @@ Here,
 For example, assuming the <APP_NAME> is **appcake**, 
 - to log into the **php** container service, run: `docker exec -it appcake_php bash`.
 - to view the logs of the **nginx** service, run: `docker-compose logs -f nginx`.
+
+
+
+
+
+
+
+
+
+
+[docker]: https://www.docker.com/
+[compose]: https://docs.docker.com/compose/

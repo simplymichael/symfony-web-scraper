@@ -39,5 +39,5 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 ## Symfony will need to `git init` during setup.
 ## If we don't set the git user's name and email, 
 ## Symfony will exit with an error.
-RUN git config --global user.name "simplymichael" && \ 
-    git config --global user.email "simplymichaelorji@gmail.com"
+#RUN git config --global user.name "Your name" && \ 
+#    git config --global user.email "you@example.com"
