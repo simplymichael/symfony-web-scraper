@@ -4,8 +4,6 @@ services:
     container_name: "${APP_NAME}_php"
     build:
       context: ./php-7-4-fpm-nginx
-    ports:
-      - "9000:9000"
     volumes:
       - ./app:/var/www/symfony_docker
       - ./supervisor:/etc/supervisor/conf.d
@@ -43,8 +41,6 @@ services:
       # This allows us to automate the complete install and run process
       APP_ENV: "${APP_ENV}"
       APP_SECRET: "${APP_SECRET}"
-      GIT_USER_NAME: "${GIT_USER_NAME}"
-      GIT_USER_EMAIL: "${GIT_USER_EMAIL}"
       DATABASE_URL: "mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE}?serverVersion=5.7&charset=utf8mb4"
       MESSENGER_TRANSPORT_DSN: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672/%2f/messages"
     entrypoint: [ bash, -c, "/usr/shell-scripts/init.sh" ]
